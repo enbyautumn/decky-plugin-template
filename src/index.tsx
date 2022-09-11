@@ -2,6 +2,8 @@ import {
   ButtonItem,
   definePlugin,
   DialogButton,
+  findInReactTree,
+  getReactInstance,
   Menu,
   MenuItem,
   PanelSection,
@@ -20,6 +22,21 @@ import logo from "../assets/logo.png";
 //   left: number;
 //   right: number;
 // }
+
+//@ts-ignore
+let element = findInReactTree(getReactInstance(document.getElementById("root")._reactRootContainer._internalRoot.current), (m: any) => {
+  if (typeof m !== 'object') return false;
+
+  for (let prop in m) {
+    if (m[prop]?.props) {
+      console.log(m[prop]?.props);
+      // return m[prop];
+    }
+  }
+  return false;
+});
+
+console.log(element);
 
 const Content: VFC<{ serverAPI: ServerAPI }> = ({}) => {
   // const [result, setResult] = useState<number | undefined>();
