@@ -212,9 +212,6 @@
         };
     };
 
-    function getReactInstance(o) {
-        return o[Object.keys(o).find(k => k.startsWith('__reactInternalInstance'))];
-    }
     const findInTree = (parent, filter, opts) => {
         const { walkable = null, ignore = [] } = opts ?? {};
         if (!parent || typeof parent !== 'object') { // Parent is invalid to search through
@@ -324,7 +321,7 @@
     //   right: number;
     // }
     //@ts-ignore
-    let element = findInReactTree(getReactInstance(document.getElementById("root")._reactRootContainer._internalRoot.current), (m) => {
+    let element = findInReactTree(document.getElementById("root")._reactRootContainer._internalRoot.current, (m) => {
         if (typeof m !== 'object')
             return false;
         for (let prop in m) {

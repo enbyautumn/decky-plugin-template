@@ -24,7 +24,7 @@ import logo from "../assets/logo.png";
 // }
 
 //@ts-ignore
-let element = findInReactTree(getReactInstance(document.getElementById("root")._reactRootContainer._internalRoot.current), (m: any) => {
+let element = findInReactTree(document.getElementById("root")._reactRootContainer._internalRoot.current, (m: any) => {
   if (typeof m !== 'object') return false;
 
   for (let prop in m) {
